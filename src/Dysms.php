@@ -17,23 +17,16 @@ class Dysms
     public $AccessKeySecret = '';
     public $signature       = "";
 
-    private $client = null;
 
-
-    public function __construct()
+    public function send($tel, $tpl_code, $msg = [])
     {
         $config = [
             'accessKeyId'     => $this->AccessKeyId,
             'accessKeySecret' => $this->AccessKeySecret
         ];
 
-        $this->client = new Client($config);
-    }
+        $client = new Client($config);
 
-
-    public function send($tel, $tpl_code, $msg = [])
-    {
-        $client  = $this->client;
         $sendSms = new SendSms();
         $sendSms->setSignName($this->signature);
         $sendSms->setPhoneNumbers($tel);
